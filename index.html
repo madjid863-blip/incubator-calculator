@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة قدرة مصدر الحرارة للفقاسات - YalTech Couveuse</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-egg"></i>
+                <h1>YalTech Couveuse</h1>
+            </div>
+            <p class="tagline">حاسبة قدرة مصدر الحرارة للفقاسات</p>
+        </header>
+
+        <main class="main-content">
+            <div class="card calculator-card">
+                <div class="card-header">
+                    <i class="fas fa-calculator"></i>
+                    <h2>احسب القدرة المطلوبة لفقاستك</h2>
+                </div>
+                
+                <div class="card-body">
+                    <form id="calculatorForm">
+                        <div class="input-group">
+                            <label for="length">
+                                <i class="fas fa-ruler-horizontal"></i>
+                                الطول (سم)
+                            </label>
+                            <input type="number" id="length" name="length" min="1" step="0.1" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="width">
+                                <i class="fas fa-ruler-vertical"></i>
+                                العرض (سم)
+                            </label>
+                            <input type="number" id="width" name="width" min="1" step="0.1" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="height">
+                                <i class="fas fa-arrows-alt-v"></i>
+                                الارتفاع (سم)
+                            </label>
+                            <input type="number" id="height" name="height" min="1" step="0.1" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="ambient">
+                                <i class="fas fa-thermometer-half"></i>
+                                درجة حرارة الغرفة (°م)
+                            </label>
+                            <input type="number" id="ambient" name="ambient" value="20" min="-10" max="40" step="0.1" required>
+                        </div>
+
+                        <button type="submit" class="btn-calculate">
+                            <i class="fas fa-calculator"></i>
+                            احسب القدرة المطلوبة
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="resultCard" class="card result-card hidden">
+                <div class="card-header success">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>نتيجة الحساب</h2>
+                </div>
+                
+                <div class="card-body">
+                    <div class="result-main">
+                        <div class="result-value">
+                            <span class="label">القدرة المطلوبة:</span>
+                            <span class="value" id="wattage">0</span>
+                            <span class="unit">واط</span>
+                        </div>
+                    </div>
+
+                    <div class="result-details">
+                        <div class="detail-item">
+                            <i class="fas fa-cube"></i>
+                            <span class="detail-label">حجم الفقاسة:</span>
+                            <span class="detail-value" id="volume">0</span>
+                            <span class="detail-unit">لتر</span>
+                        </div>
+
+                        <div class="detail-item">
+                            <i class="fas fa-temperature-high"></i>
+                            <span class="detail-label">درجة الحرارة المستهدفة:</span>
+                            <span class="detail-value">37.2 - 37.7</span>
+                            <span class="detail-unit">°م</span>
+                        </div>
+                    </div>
+
+                    <div class="recommendations">
+                        <h3><i class="fas fa-lightbulb"></i> التوصيات</h3>
+                        <ul id="recommendationsList">
+                        </ul>
+                    </div>
+
+                    <button class="btn-new" onclick="resetCalculator()">
+                        <i class="fas fa-redo"></i>
+                        حساب جديد
+                    </button>
+                </div>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <i class="fas fa-info-circle"></i>
+                    <h3>كيف يعمل الحساب؟</h3>
+                    <p>يتم حساب القدرة المطلوبة بناءً على حجم الفقاسة، الفرق بين درجة الحرارة المستهدفة ودرجة حرارة الغرفة، مع الأخذ بعين الاعتبار فقدان الحرارة عبر الجدران والعزل.</p>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>نصائح مهمة</h3>
+                    <ul>
+                        <li>تأكد من جودة العزل الحراري للفقاسة</li>
+                        <li>استخدم ترموستات دقيق للتحكم بالحرارة</li>
+                        <li>اختر مصدر حرارة بقدرة أعلى قليلاً من المحسوبة</li>
+                        <li>راقب درجة الحرارة بشكل مستمر خلال التفقيس</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>
+                <i class="fas fa-egg"></i>
+                YalTech Couveuse - خبراء قطع غيار الفقاسات ومعدات تربية الدواجن
+            </p>
+            <p class="contact">
+                <i class="fas fa-phone"></i> للطلب والاستفسار: اتصل بنا
+                <i class="fas fa-map-marker-alt"></i> براقي/باب الزوار - الجزائر
+            </p>
+            <p class="website">
+                <i class="fas fa-globe"></i>
+                <a href="https://www.YalTech-dz.com" target="_blank">www.YalTech-dz.com</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="js/calculator.js"></script>
+</body>
+</html>
